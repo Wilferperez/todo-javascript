@@ -1,4 +1,3 @@
-let IdCounter = 0;
 const input = document.querySelector('input[type="text"]');
 const list = document.getElementById('list');
 
@@ -16,7 +15,7 @@ const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('t
                     <input type="checkbox" id="${element.id}" ${element.completed ? 'checked' : ''}>
                     ${element.name}
                 </label>
-                <img src="./img/basura.png" class="closeBtn" width = "15px" height = "15px">
+                <img src="./img/basura.png" id="${element.id}" class="closeBtn" width = "15px" height = "15px">
             </div>
             `
     });
@@ -32,8 +31,6 @@ userInput.addEventListener('submit', (event)=>{
 });
 
 let addTask = ()=>{
-    IdCounter++;
-
     let newValue = input.value;
     console.log(newValue)
     if (newValue === ""){
@@ -43,22 +40,23 @@ let addTask = ()=>{
         return;
     }
 
-    list.innerHTML += `
-    <div class="task-container" id="${IdCounter}">
+
+    const ids = tasks.map(item => item.id)
+    const maxId = Math.max(...ids) 
+
+
+    list.innerHTML += `<div class="task-container" id="${(maxId === -Infinity) ? 1 : maxId + 1}">
             <label>
                 <input type="checkbox">
                 ${newValue}
             </label>
-            <img src="./img/basura.png" class="closeBtn" width = "15px" height = "15px">
-        </div>
-        `
+            <img src="./img/basura.png" id="${(maxId === -Infinity) ? 1 : maxId + 1}" class="closeBtn" width = "15px" height = "15px">
+        </div>`;
+
         input.value = '';
 
-        const ids = tasks.map(item => item.id)
-        const maxId = Math.max(...ids) 
-    
         tasks.push({
-            "id": (maxId === -Infinity) ? 0 : maxId + 1,
+            "id": (maxId === -Infinity) ? 1 : maxId + 1,
             "name": newValue,
             "completed": false
           })
@@ -69,6 +67,7 @@ let addTask = ()=>{
 };
 
 list.addEventListener('click',(event)=>{
+    console.log('event.srcElement ', event.srcElement)
     const elementId = Number(event.srcElement.id);
     console.log('elementId ', elementId)
     // console.log('evento dsds', document.getElementById(`${event.srcElement.id}`))
