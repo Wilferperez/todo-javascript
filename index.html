@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- <script type="text/javascript" src="./main.js" async></script> -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
     <title>Lista de usuario📝</title>
-</head>
-<body>
-    <div id="divlogo">
+  </head>
+  <body>
+    <div class="container">
+      <div id="loading" class="loading" onClick="hideSpinner()">
+        Loading&#8230;
+      </div>
+      <!-- <input type="button" value="save" / id="saveBtn" onClick="showSpinner()"> -->
 
-        <img src="./img/lista-de-verificacion.png" alt="logo" class="logo">
-    </div>
+      <div id="divlogo">
+        <img src="./img/lista-de-verificacion.png" alt="logo" class="logo" />
+      </div>
 
-    <div id="input">
-
-        
+      <div id="input">
         <h1>javascript - to do list</h1>
-        
+
         <form action="#" id="userInput">
-            <input type="text" placeholder="escriba aqui su tarea..." autofocus>
-            <input type="submit" value="+" id="addBtn">
+          <input type="text" placeholder="escriba aqui su tarea..." autofocus />
+          <input type="submit" value="+" id="addBtn" onClick="showSpinner()" />
         </form>
-        
-    </div>
-    <div id="list"  class="list-container">
-         
+      </div>
+      <div id="list" class="list-container">
         <!-- <dic class="task-container" id="1">
-            <label>
-                <input type="checkbox">
-                Tarea 1
-            </label>
-            <img src="./img/basura.png" class="closeBtn">
-        </div>
-         -->
-    
-    </div>
+                <label>
+                    <input type="checkbox">
+                    Tarea 1
+                </label>
+                <img src="./img/basura.png" class="closeBtn">
+            </div>
+            -->
+      </div>
 
-
-    <div id="stats">
+      <div id="stats">
         <!-- tareas pendientes: 5 completadas:3 -->
-    </div>
+      </div>
 
-   <div id="error"></div>
-    
+      <div id="error"></div>
+    </div>
     <script src="./main.js"></script>
-</body>
+  </body>
 </html>
